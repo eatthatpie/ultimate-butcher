@@ -1,0 +1,94 @@
+@import './../../assets/scss/mixins/mixins';
+@import './../../assets/scss/variables/variables';
+
+.navigation-aside {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    margin: 20px;
+    color: #fff;
+
+    &:before {
+        content: '';
+        @include border-radius(10px);
+        @include transform-origin(0, 50%);
+        @include transform(scaleX(.618));
+        @include transition(.2s);
+        @include transition-timing-function();
+        background-color: #313131;
+        position: absolute;
+        top: -15px;
+        bottom: -15px;
+        left: -15px;
+        width: 264px;
+        opacity: 0;
+    }
+
+    &.is-open {
+        &:before {
+            @include transform-none();
+            opacity: 1;
+        }
+    }
+
+    > ul {
+        li {
+            position: relative;
+            text-align: center;
+            font-size: 25px;
+
+            &:nth-child(n + 2) {
+                margin-top: 10px;
+            }
+
+            &.is-leader {
+                margin-bottom: 40px;
+            }
+
+            &.is-primary {
+                > a {
+                    color: $color-primary;
+                }
+            }
+
+            > a {
+                color: #fff;
+                position: relative;
+                z-index: 1;
+
+                &:before {
+                    content: '';
+                    @include position-cover();
+                    @include dimensions(41px);
+                    @include border-circle();
+                    @include transform(scale(.9));
+                    @include transition(.1s);
+                    background-color: #000;
+                    top: -6px;
+                    left: -8px;
+                    opacity: 0;
+                    z-index: -1;
+                }
+
+                & + .tooltip {
+                    @include transition-delay(0);
+                }
+
+                &:hover {
+                    &:before {
+                        @include transform-none();
+                        opacity: .9;
+                    }
+
+                    & + .tooltip {
+                        @include show();
+                        @include transform-none();
+                        @include transition-delay(.150s);
+                    }
+                }
+            }
+        }
+    }
+}

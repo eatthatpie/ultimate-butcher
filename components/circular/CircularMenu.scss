@@ -1,0 +1,20 @@
+@import './../../assets/scss/mixins/mixins';
+
+.circular-menu {
+    @include transform(scale(.618));
+    @include transition(opacity .100s, transform .100s);
+    position: absolute;
+    left: 300px;
+    top: 300px;
+    opacity: 0;
+
+    &.is-open {
+        @include transform(scale(1));
+        opacity: 1;
+    }
+
+    &-canvas {
+        cursor: pointer;
+        transform-style: preserve-3d;
+    }
+}

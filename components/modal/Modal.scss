@@ -1,0 +1,50 @@
+@import './../../assets/scss/mixins/mixins';
+@import './../../assets/scss/variables/variables';
+
+.modal {
+    $maxWidth: 300px;
+    $maxHeight: 140px;
+
+    @include hide();
+    @include dimensions($maxWidth, $maxHeight);
+    @include transition(all .150s ease-in-out 0s);
+    position: fixed;
+    top: calc(50% - #{$maxHeight / 2});
+    left: calc(50% - #{$maxWidth / 2});
+    z-index: 2019;
+
+    // &:before {
+    //     content: '';
+    //     @include position-cover();
+    //     @include border-radius(3px);
+    //     @include transform(scaleX(.1));
+    //     @include transition(all 0s ease-in-out .150s);
+    //     background-color: $color-black;
+    //     z-index: -1;
+    // }
+
+    &-body {
+        @include transform(translateY(5px));
+        @include transition(all 0s ease-in-out .100s);
+        color: $color-default-contrast;
+        padding: 10px 20px;
+        height: 100%;
+        opacity: 0;
+    }
+
+    &.is-open {
+        @include show();
+        @include transition(all .150s ease-in-out 0s);
+
+        .modal-body {
+            @include transform-none();
+            @include transition(all .150s ease-in-out .150s);
+            opacity: 1;
+        }
+
+        &:before {
+            @include transform-none();
+            @include transition(all .150s ease-in-out .150s);
+        }
+    }
+}

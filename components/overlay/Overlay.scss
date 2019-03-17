@@ -1,0 +1,16 @@
+@import './../../assets/scss/mixins/mixins';
+@import './../../assets/scss/variables/variables';
+
+.overlay {
+    @include hide();
+    @include position-fixed-cover();
+    @include transition(.200s);
+    background-color: rgba($color-default, .75);
+    pointer-events: none;
+    z-index: 2018;
+
+    &.is-open {
+        @include show();
+        pointer-events: all;
+    }
+}

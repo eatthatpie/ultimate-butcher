@@ -1,0 +1,12 @@
+.slice-vertical {
+    background-color: #42b883;// #4affff;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 400px);
+    width: 1px;
+
+    & + & {
+        left: calc(50% + 400px);
+    }
+}

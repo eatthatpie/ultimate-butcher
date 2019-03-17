@@ -1,0 +1,98 @@
+@import './../../assets/scss/mixins/mixins';
+
+.hamburger {
+    $size: 30;
+
+    @include dimensions(#{$size}px);
+    position: relative;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+
+    &:before {
+        content: '';
+        @include position-cover();
+        @include dimensions(40px);
+        @include border-circle();
+        @include transform(scale(.9));
+        @include transition(.1s);
+        background-color: #000;
+        top: -5px;
+        left: -5px;
+        opacity: 0;
+        z-index: -1;
+    }
+
+    &:hover {
+        &:before {
+            @include transform-none();
+            opacity: .9;
+        }
+    }
+
+    >.dot {
+        @include dimensions(#{$size/5}px);
+        @include border-circle();
+        @include transition(.2s);
+        @include transition-timing-function();
+        background-color: #fff;
+        position: absolute;
+        left: #{2 * $size / 5}px;
+
+        @for $i from 1 through 3 {
+            &:nth-child(#{$i}) {
+                top: #{($i - 1) * (2 * $size / 5)}px;
+            }
+        }
+    }
+
+    > .line {
+        @include dimensions(#{$size}px);
+        @include transition(.2s);
+        @include transition-delay(0s);
+        @include transition-timing-function();
+        @include transform-origin(50%, 50%);
+        background-color: #fff;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: #{.45 * $size}px;
+        height: #{.1 * $size}px;
+        opacity: 0;
+
+        &:nth-child(4) {
+            @include transform(rotate(45deg) scaleX(0));
+        }
+
+        &:nth-child(5) {
+            @include transform(rotate(-45deg)  scaleX(0));
+        }
+    }
+
+    &.is-open {
+        > .dot {
+            opacity: 0;
+
+            &:nth-child(1) {
+                @include translateY(#{2 * $size / 5}px);
+            }
+
+            &:nth-child(3) {
+                @include translateY(#{-2 * $size / 5}px);
+            }
+        }
+
+        > .line {
+            @include transition-delay(.1s);
+            opacity: 1;
+
+            &:nth-child(4) {
+                @include transform(rotate(45deg) scaleX(1));
+            }
+
+            &:nth-child(5) {
+                @include transform(rotate(-45deg) scaleX(1));
+            }
+        }
+    }
+}
