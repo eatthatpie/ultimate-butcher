@@ -1,0 +1,6 @@
+# vendors
+/node_modules/
+
+# build output
+/.next/
+package-lock.json
