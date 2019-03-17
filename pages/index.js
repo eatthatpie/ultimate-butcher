@@ -4,10 +4,6 @@ import { Provider } from 'react-redux';
 import { store } from '@/store';
 import '@/assets/scss/app.scss';
 
-store.dispatch({
-    type: 'CLOSE_MODAL'
-});
-
 export default class PageIndex extends React.Component {
     constructor(props) {
         super(props);

@@ -37,6 +37,8 @@ export const reducer = (state = initialState, action) => {
                 bodyHtml: ``
             }
         });
+    default:
+        return initialState;
     }
 };
 
