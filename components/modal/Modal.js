@@ -5,6 +5,7 @@ import onClickOutside from 'react-onclickoutside';
 import { actionModalClose } from '@/store';
 import './Modal.scss';
 
+// @TODO(?): add auto-close after some time (if no user action is needed)
 class Modal extends React.Component {
     constructor(props) {
         super(props);

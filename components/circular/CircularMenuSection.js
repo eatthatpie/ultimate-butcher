@@ -56,30 +56,24 @@ class CircularMenuSection {
         const polarCoords = this.toPolarCoords(position);
 
         if (this.angleStart <= polarCoords.a && polarCoords.a <= this.angleEnd) {
-            if (this.radius - (this.strokeWidth / 2) <= polarCoords.r && polarCoords.r <= this.radius + (this.strokeWidth / 2)) {
-                if (this.isHover !== true) {
-                    this.isHover = true;
-                    this.hover(true);
-                }
-                
-                // canvas.style.cursor = 'pointer';
-            }
-            else {
-                if (this.isHover === true) {
-                    this.isHover = false;
-                    this.hover(false);
-                }
-                
-                // canvas.style.cursor = 'auto';
-            }
+            this.handleHover(polarCoords);
         }
-        else {
-            if (this.isHover === true) {
-                this.isHover = false;
-                this.hover(false);
-            }
+        else if (this.isHover === true) {
+            this.isHover = false;
+            this.hover(false);
+        }
+    }
 
-            // canvas.style.cursor = 'auto';
+    handleHover(polarCoords) {
+        if (this.radius - (this.strokeWidth / 2) <= polarCoords.r 
+            && polarCoords.r <= this.radius + (this.strokeWidth / 2) 
+            && this.isHover !== true) {
+            this.isHover = true;
+            this.hover(true);
+        }
+        else if (this.isHover === true) {
+            this.isHover = false;
+            this.hover(false);
         }
     }
 

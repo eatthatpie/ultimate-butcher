@@ -1,7 +1,8 @@
 {
     "scripts": {
         "dev": "next -p 3000",
-        "dev-server": "node server/dev.js",
+        "server-dev": "node server/dev.js",
+        "server-sb": "node server/smart-butcher.js",
         "build": "next build",
         "start": "next start -p 3000",
         "flow": "flow",
